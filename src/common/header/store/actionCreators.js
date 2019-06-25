@@ -14,7 +14,7 @@ import { fromJS } from "immutable";
 
 const changeSearchList = (data) => ({
     type:constants.GET_SEARCH_LIST,
-    data:fromJS(data),
+    data:fromJS(data),   // 将数据类型转化为immutable类型;
     pageTotal:Math.ceil(data.length / 10)
 })
 
@@ -39,7 +39,7 @@ export const changePage = (page) => ({
     page
 })
 /**
- * 1、中间件redux-thunk,使得返回值可以为函数;
+ * 1、中间件redux-thunk,使得返回值可以为函数，没有使用redux-thunk以前的返回值为一般对象；
  *   
  */
 export const getSearchList = () => {

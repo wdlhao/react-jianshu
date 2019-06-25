@@ -1,6 +1,6 @@
 import { createStore, compose ,applyMiddleware } from "redux";
 import * as reduxObj from "redux";
-import thunk from "redux-thunk";
+import thunk from "redux-thunk";  // 用于在action中使用异步操作;ajax请求;
 import reducer from "./reducer"; // 
 console.log(reduxObj)
 
