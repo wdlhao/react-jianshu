@@ -1,3 +1,366 @@
+4、react高级内容
+4.1、Reactdevelopertools安装及使用
+4.2、DefaultProps 与 propTypes
+4.3、prop,state与render函数的关系
+    > 当组件的state,props发生改变的时候，render函数就会重新执行;
+    > 当父组件的render函数被运行时,它的子组件的render都将被重新运行;
+4.4、react中的虚拟DOM
+   方法1：
+   1、state 数据;
+   2、JSX 模板;
+   3、数据 + 模板 结合，生成真实的DOM来显示;
+   4、state发生改变;
+   5、数据 + 模板 结合，生成真实的DOM,替换原始的Dom;
+   缺陷：
+   1、第一次生成了一个完整的DOM片段，第二次又生成了一个完整的DOM片段,第二次的DOM替换第一次的DOM,非常耗性能;
+
+   方法2：
+   改进：
+   1、state 数据;
+   2、JSX 模板;
+   3、数据 + 模板 结合，生成真实的DOM来显示;
+   4、state发生改变;
+   5、数据 + 模板 结合，生成真实的DOM,并不直接替换原始的DOM;
+   6、新的DOM(DocumentFragment) 和原始的DOM做比对，找差异；
+   7、找出发生改变的元素;
+   8、只用新的DOM中的元素，替换掉老的DOM中的元素;
+   缺陷：
+   1、性能的提升并不明显;
+
+   方法3(react中使用的方法)
+   1、state 数据;
+
+   2、JSX 模板;
+
+   3、生成虚拟DOM(虚拟DOM就是一个js对象，用它来描述真实DOM)(损耗了性能)
+     ['div',{id:'abc'},['span',{},'hello world']]
+
+   4、用虚拟DOM的结构生成真实的DOM,来显示;
+     <div id="abc"><span>hello world</span></div>
+
+   5、state发生改变
+
+   6、数据 + 模板 生成新的虚拟DOM  (极大的提升了性能)
+    ['div',{id:'abc'},['span',{},'eye eye']]
+
+   7、比较原始虚拟DOM和新的虚拟DOM的区别,找到区别是span中内容  (极大的提升了性能)
+
+   8、直接操作DOM,改变span中的内容;
+
+4.5、深入了解虚拟DOM;
+    优点：
+    1、性能提升；
+    2、它使得跨端应用得以实现。React Native
+
+4.6、虚拟DOM中Diff算法
+   1、同层比对;
+   2、key值比对;
+
+4.7、react中ref的使用
+   1、<ul ref="ul"></ul>
+      ref = {input => {this.input = input}}
+      this.ul.querySelectorAll('div').length;
+
+4.8、react的生命周期函数
+   定义：生命周期函数是指某一个时刻组件会自动调用执行的函数;
+   函数：
+    Init:render,页面被渲染时或者state,props被重新赋值时，会自动执行;
+    Mount:
+    componentWillMount,componentDidMount
+    含义：表示组件被挂载前后才会执行的函数;只会在页面挂载时执行一次;
+    Update:
+      shouldComponentUpdate:
+        > 组件将会更新时，会自动执行;
+        > 需要返回true或者false,返回值为true时，其他更新组件的执行;返回值为false时，其他更新组件不会被执行;
+      componentWillUpdate:
+        > 组件即将被更新时，会自动执行；
+      componentDidUpdate:
+        > 组件更新完成之后，会自动执行；
+      componentWillReceiveProps
+        > 执行条件：
+           1、当子组件有接收父组件传递过来的参数；
+           2、当这个组件之前存在于父组件中，render函数执行时，这个生命周期函数才会被执行；
+    Unmount:
+       componentDidUnmount:
+         > 组件被移除页面时，才会被执行
+  
+4.9、生命周期函数的应用场景
+   > shouldComponentUpdate(nextProps,nextState){}:通过比较所传参数是否相同，来判断子组件是否需要被重新渲染
+   > componentDidMount(){
+       安装插件axios来进行ajax异步数据请求
+     }
+
+4.10、利用charles实现本地数据请求
+  > charles官网：https://www.charlesproxy.com/
+  > 操作步骤：
+     1、下载安装；
+     2、菜单tools-->map local 设置path等参数; (我没有设置好？？)
+    
+4.11、react中实现css过滤动画
+  > className={this.state.show ? 'show':'hide'
+  > .show{opacity:1;translate:all 1s ease-in}
+    .hide{opacity:0;translate:all 1s ease-in}
+
+4.12、react中使用css动画效果
+  > @keyframes show-item {}
+  > @keyframes hide-item {}
+
+4.13、使用react-transition-group实现动画
+
+5.1、Redux的概念简述
+  > 定义：redux为react项目进行数据(状态)管理的配置工具；
+  > 主要作用：解决多层级组件之间的数据传值问题;Store为公共数据存储区域;
+  > 设计理念：一个组件将所有的数据存储到store中，其他的组件都监听store中的数据；当store中数据发生改变时，其他所有组件的数据都会进行相应的改变;
+  > Redux = Reducer + Flux;
+
+5.2、Redux的工作流程;
+  > React Components:指页面上的每一个组件;
+  > Store:数据存储空间;
+  > Action Creators:执行组件发出的指令;
+  > Reducers:记录本，查找相关的数据;
+
+5.3、使用antd(react的ui组件)编写todolist页面布局
+  > 官网：https://ant.design/index-cn
+  > 多用于开发后台管理系统
+  > 使用方法：安装，引入css,导入相应的组件,如Input,Button,List等;
+
+5.4、创建redux中的store
+  1、引入createStore,创建store;
+     const store = createStore();
+  2、创建reducer,返回函数，接收两个参数；
+  3、引入reducer并传给store;
+     const store = createStore(reducer);
+  4、在组件中引入store并获取数据；
+     this.state = store.getState();
+
+5.5、Action和Reducer的编写
+  1、安装redux,需要在store中配置第二个参数
+    const store = createStore(
+      reducer,
+      window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    );
+  2、触发事件，定义action,store.dispatch(action);
+  3、store接收action指令，让reducer进行数据的查找和操作；通过action.type的判断，进行数据的处理，返回新的newState;
+  4、回到组件中，通过store.subscribe(this.updateData)监听数据的变化;
+     updateData(){
+       this.setState(store.getState());
+     }
+
+5.6、使用Redux完成TodoList删除功能
+  > 执行删除事件,要传删除li的index;
+    handleItemDelete(index){
+      const action = {
+        type:'delete_todo_item',
+        index
+      }
+    }
+  > reducer
+
+5.7、Action types的拆分
+  > 新建actionTypes.js文件，定义动作常量并export;
+  > 在组件中导入并使用;
+
+5.8、使用actionCreator创建acion
+  > 新建actionCreators.js文件，导入actionTypes.js文件；
+  > 定义相应的函数并返回对象，对象中包含type或者vlaue;
+
+5.9、Redux知识点复习和补充；
+ > Redux设计和使用的时候遵循3个原则：
+   1、store是唯一的;
+   2、只有store能够改变自己的内容；
+   3、reducer是个纯函数;
+
+6.1、UI组件和容器组件的拆分
+   > UI组件(傻瓜组件)：负责页面的渲染；
+   > 容器组件(聪明组件):负责页面的业务逻辑；
+   > 分离出UI组件，通过属性的形式将参数传给子组件;子组件通过this.props接收属性或者方法;
+
+6.2、无状态组件
+  > 一个接收props的函数，性能高;
+  > 当一个普通组件主要render函数时，并且没有复杂的业务逻辑，可以用无状态组件代替UI组件;
+  
+6.3、Redux中发送异步请求获取数据
+ > 
+
+
+6.5、到底什么是redux中间件？
+   原理：对store的dispatch方法进行了升级处理；
+   当传入dispatch的参数为一个函数的时候，它会先执行函数，获取到结果之后，再发送给store;
+
+6.6、redux-saga中间件的使用
+  redux-saga和redux-thunk都可以进行异步代码的处理；
+  具体参考redux-saga官网:https://github.com/redux-saga/redux-saga
+
+6.8、react-redux的使用
+  第三方模块，可以在react中更方便的使用redux;
+  import {Provider} from "react-redux"; // 提供器
+  const App = (
+    <Provider store={store}>
+        <Todolist />
+    </Provider>
+  )
+  ReactDOM.render(App,document.getElementById('root'))
+  作用：Provider组件和store产生了关联，被Provider包裹的组件都可以使用store里面的数据；
+
+  import React,{Component} from "react";
+  import {connect} from "react-redux";
+  class TodoList extends Component {
+      const mapStateToProps = (state) => {
+          return {
+              inputValue:state.inputValue
+          }
+      }
+      // store.dispatch,props
+      const mapDispatchToProps = (dispatch) => {
+          return {
+              changeInputValue(e){
+                  console.log(e.target.value);
+              }
+          }
+      }
+      render(){
+          return (
+              <div></div>
+          )
+      }
+  }
+  export default connect(mapStateToProps,mapDispatchToProps)(TodoList)
+  让TodoList组件和store建立连接；store中的属性与mapStateToProps产生映射关系；
+
+
+7.1、项目目录搭建，Styled-Components与Reset.css的结合使用
+  > Styled-Components:
+    使用方法：
+    (1)、npm install --save styled-components
+    (2)、import { injectGlobal } from "styled-components";
+    注意事项：对应的index.css需要改为index.js;
+    其主要作用为：可以定义全局样式；也可以定义针对单独页面起作用的局部样式;
+  > reset.css：
+    使用方法：访问其官网，复制其官网的reset.css代码，归入{injectGlobal}中即可；
+    主要作用：统一各个浏览器对html标签的渲染方式
+
+7.2、使用styled-components完成Header组件布局（1）
+  
+
+7-06使用React-Redux进行应用数据的管理
+/**
+ * 1、子组件通过react-redux中的connect与父组件建立联系,使子组件能够获取到父组件传递过来的数据;
+ * 2、connect方式：export default connect(mapStateToProps,mapDispatchToProps)(子组件名);
+ * 3、connect接收默认的2个参数：mapStateToProps,mapDispatchToProps
+ *    > mapStateToProps:函数，接收参数state;
+ *    > mapDispatchToProps:函数，接收参数dispatch,用于改变store中的state;重新走action流程;
+ * 4、子组件如何获取数据：this.props.focused;注意：通过this.props获取的值为mapStateToProps中接收的值;
+ * 
+ */
+  mapDispatchToProps
+ /**
+  * 1、mapDispatchToProps接收默认的传参dispatch,用于触发action;
+  * 2、函数的返回值为一个对象;对象里面是各个函数;函数之间用','隔开;
+  * 3、如果函数里面要改变state,需要重新走action流程;action-->store-->reducer-->store-->components;
+  */
+  reducer.js
+/**
+ * 1、定义默认state数据对象;
+ * 2、定义默认的返回函数对象(纯函数);接收默认的参数对象：state和action
+ */
+
+7-07使用combineReducers完成对数据的拆分管理
+/**
+ * combineReducers:
+ * 背景、大型项目需要拆分reduers.js的功能;(小手册进行分类管理);
+ * 使用方法：
+ *   1、在相应的组件(header组件)下新建store/reducer.js文件，分担独自组件的状态管理；
+ *   2、从redux中导入combineReducers，从header组件中导入headerReducer；
+ *   3、载入combineReducers方法并导出;
+ *   4、修改组件中mapStateToProps中state的获取源：focused:state.header.focused;
+ */
+
+7-08actionCreators与constants的拆分
+/**
+ * actionCreator.js
+ * 作用：定义函数用来返回type,将所有组件中定义的action逻辑交给actionCreators来进行集中管理；
+ * 使用方法：
+ * 1、在相应的组件store下新建actionCreator.js文件，定义函数用来返回type;
+ * 2、type进行统一的常量管理；新建常量管理器constants.js,定义常量并返回;
+ * 3、在reducer.js中，用新建的常量替换以前的actoin,type;
+ * 4、在store/index.js中,新增导出对象{ actionCreators,constants}
+ * 5、在header/index.js中,引入actionCreators，用于触发dispatch；
+ */
+
+ 7-09使用Immutable.js来管理store中的数据
+ *  immutable.js
+ *  作用：用于reducer.js中，保证state不被修改;
+ *  对象变更原理：
+ *   immutable对象的set方法，会结合之前immutable对象的值和新设置的值，返回一个全新的对象；
+ *  使用方法：
+ *  1、npm install immutable
+ *  2、import { fromJS } from "immutable";
+ *     fromJS():将一个js数据转换为Immutable类型的数据
+ *  3、将state数据(js对象)变为immutable对象：fromJS({focused:true})
+ *  4、set数据：state.set('focused',false)
+ *  5、get数据(header/index.js): state.header.get('focused')
+ *  */
+
+ 7-10使用redux-immutable统一数据格式
+  /* combineReducers来自redux-immutable
+ * 背景：保证整个项目生成的数据内容为immutable对象内容;
+ *  使用方法：
+ *   1、导入：import { combineReducers } from "redux-immutable";
+ *   2、更改组件header中，mapStateToProps的参数state获取数据的方式为immutable对象方式；
+ *      state.get('header').get('focused')/ state.getIn['header','focused']
+ */
+ 
+7-11热门搜索样式布局
+  > styled.div``布局;
+  > {getSearchInfo(props)}:独立组件以函数的形式进行封装;
+  > {props.searchArr.map((item,index) => (<div key={index}>{item}</div>))}
+
+7-12Ajax获取推荐数据
+  redux-thunk、axios
+  背景：ajax异步获取数据，需要用到中间件redux-thunk,它使得返回值可以为函数;
+  使用步骤如下：
+  1、安装redux-thunk、axios
+     npm install redux-thunk axios --save;
+  2、配置thunk环境：在store/index.js中导入applyMiddleware,thunk并载入中间件applyMiddleware(thunk)
+  3、定义初始searchList数组：在header/store/reducer.js中定义searchList:[],用来存储热门搜索数据;
+  4、事件触发：search框失去焦点，触发dispatch(actionCreators.getSearchList());
+  5、定义事件getSearchList：通过axios调取接口数据(本例演示获取本地json数据)，获取结果并开始action流程;
+  6、reducer更新数据：根据action.type匹配并更新数据;前提：需要设置传入的data为immutable对象,即data:fromJS(data)
+  7、mapStateToProps中获取数据：通过immutable对象方式获取数据,通过this.porps获取数据并map遍历生成DOM;
+
+7-13代码优化微调
+  1、header/index.js中,对象解构赋值方式使用，如: const { focused,searchList }  = this.props;
+  2、store/reducer.js中,switch语法的使用;
+
+7-14热门搜索换页功能实现
+ /**
+*  1、immutable对象转化为js对象的方法：const newList = searchList.toJS();
+ * 2、组件内部传参方式：onClick = {() => handleChangePage(pageIndex,pageTotal)}
+ * 3、业务逻辑的处理在mapDispatchToProps中进行,如pageIndex与pageTotal的判断及重新传参;
+ * 4、actionCreators负责触发action;reducer负责更新state数据;
+ * 5、immutable对象set多个state的方法：
+ *    state.merge({
+        'searchList':action.data,
+        'pageTotal':action.pageTotal
+      }); 
+ */
+
+ 7-15换页旋转动画效果的实现
+/**
+ * 1、fonticon图标的重新搜索和替换;
+ * 2、ref函数式写法：ref={(icon) => {this.spinIcon = icon}}
+ * 3、获取元素属性并设置新的样式：spin.style.transform
+ * 4、动画css:transform:rotate(360deg);
+ */
+
+7-16避免无意义的请求发送，提升组件性能
+/**
+ * 背景：需要搜索框每次聚焦时，都去调取接口，影响页面性能;
+ * 解决方法：
+ * 1、在input聚焦时，通过接收的参数list数组的size属性来判断是否需要调取接口;
+ *    只要list.size === 0时，才需要执行action去调取接口，其他情况不需要;
+ */
+  
 8-01 什么是路由，如何在React中使用路由功能
  定义：根据用户点击的path,显示不同的页面；
  使用步骤：
@@ -39,4 +402,11 @@
     2.注意：样式style-components插件的使用和学习;
 
 8-03 首页专题区域布局及reducer的设计
+  1.topic组件渲染数据，需要定义store;注意：const defaultState = fromJS({});
+  2.如何使用store?在src/store/reducer.js中导入homeReducer并加入combineReducers({})
+  3.topic组件中，import { connect } from 'react-redux',与home组件建立联系；
+    定义mapState,获取其属性值，在视图中使用并渲染数据；
+
+8-04 首页文章列表制作
+
   

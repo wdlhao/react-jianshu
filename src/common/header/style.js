@@ -90,6 +90,7 @@ export const SearchInfo  = styled.div`
    top:56px;
    box-shadow: 0 0 8px rgba(0,0,0,.2);
    overflow:hidden;
+   background:#fff;
 `
 export const SearchTitle  = styled.div`
     width:100%;

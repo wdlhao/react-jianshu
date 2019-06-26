@@ -1,4 +1,5 @@
 import React,{ Component } from "react";
+import { connect } from "react-redux";
 import { 
     TopicWrapper,
     TopicWrapperItem
@@ -6,15 +7,29 @@ import {
 
 class Topic extends Component {
     render(){
+        const { topicList } = this.props;
         return (
             <TopicWrapper>
-               <TopicWrapperItem>
-                  <img className="topic-pic" src="//upload.jianshu.io/users/upload_avatars/7290998/f64f5ef0-def0-4b26-beb3-b9d88f060ba0.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96/format/webp" alt="" />
-                   社会热点
-               </TopicWrapperItem>
+            {
+                topicList.map((item) => {
+                    return (
+                        <TopicWrapperItem key={item.get('id')}>
+                            <img className="topic-pic" src={item.get('imgUrl')} alt="" />
+                            {item.get('title')}
+                        </TopicWrapperItem>
+                    )
+                })
+            }
            </TopicWrapper>
         )
     }
 }
 
-export default Topic;
+const mapState = (state) => {
+    console.log(state);
+    return {
+       topicList:state.getIn(['home','topicList'])  // immutable对象获取属性的方法
+    }
+}
+
+export default connect(mapState,null)(Topic);
