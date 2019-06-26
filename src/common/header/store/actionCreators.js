@@ -22,6 +22,7 @@ export const searchFocus = () => ({
    type:constants.SEARCH_FOCUSED
 })
 
+
 export const searchBlur = () => ({
     type:constants.SEARCH_BLUR
 })

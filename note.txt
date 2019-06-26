@@ -1,0 +1,42 @@
+8-01 什么是路由，如何在React中使用路由功能
+ 定义：根据用户点击的path,显示不同的页面；
+ 使用步骤：
+  1.安装react-router-dom:最新的react-router的官方模块，4.0版本；
+    npm install react-router-dom;
+  2.导入并使用：
+    import { BrowserRouter,Route } from "react-router-dom";
+    <BrowserRouter>
+       <div>
+         <Route path="/" exact render={() =><div>home</div>}></Route>
+         <Route path="/detail" exact render={() =><div>detail</div>}></Route>
+       </div>
+    </BrowserRouter>
+  3.注意：需要学习react-router-dom中封装的api有哪些？具体功能？
+    BrowserRouter: (...)
+    HashRouter: (...)
+    Link: (...)
+    MemoryRouter: (...)
+    NavLink: (...)
+    Prompt: (...)
+    Redirect: (...)
+    Route: (...)
+    Router: (...)
+    StaticRouter: (...)
+    Switch: (...)
+    generatePath: (...)
+    matchPath: (...)
+    withRouter: (...)
+
+  8-02 首页组件的拆分
+    1.理清首页需要由哪些组件构成？如：
+      主体组件：HomeWrapper;左侧组件：HomeLeft;右侧组件：HomeRight;
+      还有一些内部的细分组件等；
+      结构如下：
+      <HomeWrapper>
+         <HomeLeft></HomeLeft>
+         <HomeRight></HomeRight>
+      </HomeWrapper>
+    2.注意：样式style-components插件的使用和学习;
+
+8-03 首页专题区域布局及reducer的设计
+  
