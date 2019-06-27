@@ -33,6 +33,7 @@ const defaultState = fromJS({
 
 
 // state：为immutable对象；
+//  使用纯函数执行修改 :纯函数的好处是它无副作用，仅仅依赖函数的输入，当输入确定时输出也一定保持一致。
 export default (state = defaultState,action) => {
     switch(action.type){
         case constants.SEARCH_FOCUSED:

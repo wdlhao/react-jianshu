@@ -33,6 +33,7 @@ import {
 
 // 当redux中定义的数据发生改变时，接收该数据的组件，也会重新渲染;单向数据绑定，实时变化;
 class Header extends Component {
+    // 展示组件
     getSearchInfo = () => {
          // 对象解构赋值方式
         const { focused,mouseIn,searchList,pageIndex,pageSize,pageTotal,handleMouseEnter,handleMouseLeave,handleChangePage }  = this.props;
@@ -77,7 +78,7 @@ class Header extends Component {
 
     render(){
         const {focused,searchList,handleInputFocus,handleInputBlur} = this.props;
-        return (
+        return ( // 容器组件
             <HeaderWarpper>
                 <Logo />
                 <Nav>

@@ -408,5 +408,25 @@
     定义mapState,获取其属性值，在视图中使用并渲染数据；
 
 8-04 首页文章列表制作
-
+  1.list组件渲染数据，需要定义store;注意：const defaultState = fromJS({});
+  2.如何使用store?在src/store/reducer.js中导入homeReducer并加入combineReducers({})
+  3.topic组件中，import { connect } from 'react-redux',与home组件建立联系；
+    定义mapState,获取其属性值，在视图中使用并渲染数据；
   
+8-05 首页推荐部分代码编写 
+  视图组件传递数据给样式style-components的方法，如：
+  视图组件传递：
+  <RecommendItem imgUrl={list.get('imgUrl')}></RecommendItem>
+  style-components接收：
+  export const  RecommendItem = styled.div`
+    background:url(${(props) => props.imgUrl})
+  `
+
+8-06 首页异步数据获取
+  结合生命周期函数调取接口，获取数据
+ componentDidMount(){
+    axios.get('/api/home.json').then((res) => {});
+ }
+ 注意：home.json文件，key和所有的字符串数据都要用"";
+  
+8-07 异步操作代码拆分优化

@@ -1,7 +1,11 @@
 import React ,{ Component } from "react";
+import { connect } from "react-redux";
+import * as actionCreators  from "./store/actionCreators";
 import Topic from "./components/Topic";
 import List from "./components/List";
 import Recommend from "./components/Recommend";
+import DownApp from "./components/DownApp";
+import Advertisement from "./components/Advertisement";
 import Writer from "./components/Writer";
 import { 
     HomeWrapper,
@@ -20,11 +24,24 @@ class Home extends Component {
                 </HomeLeft>
                 <HomeRight>
                     <Recommend></Recommend>
+                    <DownApp></DownApp>
+                    <Advertisement></Advertisement>
                     <Writer></Writer>
                 </HomeRight>
             </HomeWrapper>
         )
     }
+
+    componentDidMount(){
+       this.props.getHomeList();
+    }
 }
 
-export default Home;
+const mapDispatchToProps = (dispatch) => {
+   return {
+     getHomeList(){
+        dispatch(actionCreators.getHomeList());
+     }
+   }
+}
+export default connect(null,mapDispatchToProps)(Home);
