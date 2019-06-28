@@ -4,7 +4,6 @@ export const HomeWrapper = styled.div`
    overflow:hidden;
    width:960px;
    margin:0 auto;
-   border:1px solid;
 `
 
 export const HomeLeft = styled.div`
@@ -12,7 +11,6 @@ export const HomeLeft = styled.div`
    width:640px;
    padding-top: 30px;
    padding-right: 0;
-   border:1px solid green;
    .bannerImg{
        width:100%;
        height:270px;
@@ -23,7 +21,6 @@ export const HomeRight = styled.div`
    float:right;
    width:280px;
    padding: 30px 0 0;  
-   border:1px solid green;
 `
 
 export const TopicWrapper = styled.div`
@@ -209,6 +206,32 @@ export const WriterBottom = styled.div`
    color:#787878;
    font-size:13px;
 
+`
+
+export const LoadMoreArticle = styled.div`
+  width:100%;
+  padding:10px 0;
+  border:1px solid #dcdcdc;
+  border-radius:20px;
+  background-color:#a5a5a5
+  color:#fff;
+  font-size:14px;
+  text-align:center;
+  margin:30px 0;
+  cursor:pointer;
+`
+
+export const ScrollTop = styled.div`
+  position:fixed;
+  right:100px;
+  bottom:100px;
+  width:50px;
+  height:50px;
+  line-height:50px;
+  text-align:center;
+  border:1px solid #ccc;
+  font-size:14px;
+  cursor:pointer;
 `
 
 

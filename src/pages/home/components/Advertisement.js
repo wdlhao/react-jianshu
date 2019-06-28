@@ -1,9 +1,9 @@
-import React,{ Component } from "react";
+import React,{ PureComponent } from "react";
 import { connect } from "react-redux";
 import { AdvertiseWrapper } from "../style";
 
 
-class Advertisement extends Component {
+class Advertisement extends PureComponent {
     render(){
         const { advertiseData } = this.props;
         return (

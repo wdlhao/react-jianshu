@@ -24,12 +24,10 @@ class App extends Component {
           {/* 全局icon样式文件*/}
          <GlobalIconStyle />
          <Provider store={store}>
-           <Header></Header>
            <BrowserRouter>
-             <div>
+                <Header></Header>
                 <Route path="/" exact component={Home}></Route>
                 <Route path="/detail" exact component={Detail}></Route>
-             </div>
            </BrowserRouter>
          </Provider>
       </Fragment>

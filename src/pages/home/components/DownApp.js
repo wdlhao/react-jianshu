@@ -1,11 +1,11 @@
-import React,{ Component } from "react";
+import React,{ PureComponent } from "react";
 import { connect } from "react-redux";
 import { 
     DownAppWrapper,
     DownAppRight
 } from "../style";
 
-class DownApp extends Component {
+class DownApp extends PureComponent {
     render(){
         const { downData }   = this.props;
         return (

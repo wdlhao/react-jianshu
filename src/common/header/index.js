@@ -1,5 +1,6 @@
 import React,{ Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { actionCreators } from "./store";
 
 import {
@@ -80,11 +81,15 @@ class Header extends Component {
         const {focused,searchList,handleInputFocus,handleInputBlur} = this.props;
         return ( // 容器组件
             <HeaderWarpper>
-                <Logo />
+                <Link to="/">
+                   <Logo />
+                </Link>
                 <Nav>
                 <NavArea>
-                    <NavItem className="index active">首页</NavItem>
-                    <NavItem className="downLoad">下载App</NavItem>
+                <Link to="/">
+                    <NavItem className="index active">首页</NavItem> 
+                </Link>
+                <NavItem className="downLoad">下载App</NavItem>
                     <SearchItem>
                         <Search 
                             onFocus = {() => handleInputFocus(searchList)}
@@ -141,7 +146,7 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(actionCreators.searchFocus());
         },
         handleInputBlur(){
-            dispatch(actionCreators.searchBlur());
+           dispatch(actionCreators.searchBlur());
         },
         handleMouseEnter(){
             dispatch(actionCreators.mouseEnter());

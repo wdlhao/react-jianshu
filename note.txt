@@ -189,7 +189,7 @@
 
 6.6、redux-saga中间件的使用
   redux-saga和redux-thunk都可以进行异步代码的处理；
-  具体参考redux-saga官网:https://github.com/redux-saga/redux-saga
+  注意：具体参考redux-saga官网:https://github.com/redux-saga/redux-saga
 
 6.8、react-redux的使用
   第三方模块，可以在react中更方便的使用redux;
@@ -430,3 +430,45 @@
  注意：home.json文件，key和所有的字符串数据都要用"";
   
 8-07 异步操作代码拆分优化
+ 1.home/index.js中， dispatch(actionCreators.getHomeList())，触发命令；
+ 2.home/store/actionCreators中，export const getHomeList = () => {}),触发异步请求；
+ 3.home/store/reducer.js中，接收到newState并进行数据的更新;
+
+8-08 实现加载更多功能
+1.组件传参方法：
+  <LoadMoreArticle onClick = {() => loadMoreArticle(page)}>
+     加载更多
+  </LoadMoreArticle>
+2.home/store/reducer.js中，获取的数据，通过fromJS()将普通对象转换为immutable对象;
+
+8-09 返回顶部功能实现
+1. 组件中三元运算符的使用：
+    {
+      this.props.showScroll?<ScrollTop onClick={this.handleScrollTop}>顶部</ScrollTop>:''
+    }
+2.返回顶部事件：window.scrollTo(0,0);
+3.监听滚动事件：
+  componentDidMount(){
+      bindEvents(){  
+        window.addEventListener('scroll',this.props.changeScrollTopShow)
+     }
+  }
+4.componentDidUnmount(){
+    window.removeEventListener('scroll',this.props.changeScrollTopShow)
+}
+5.获取滚动条距离顶部的距离：
+document.documentElement.scrollTop
+
+8-10 首页性能优化及路由跳转
+1.性能分析：由于本项目所有的数据采用redux进行管理，通过react-redux的Provider和connect方法进行全局连接和调用；
+  当store中的state中数据只要一发生变化，整个页面就会重新render，影响了页面性能。
+  应该使用shouleComponentUpdate()来判断并加载必要的组件，但页面组件过多时，会显得繁琐。
+  但是react提供了另外一个已经封装好了的性能优化属性{ PureComponent }称之为'纯组件',其底层已经实现了应该使用shouleComponentUpdate,
+  只需要将extends Component 替换为 extends PureComponent即可，可以使组件
+  根据store的变化进行按需渲染。
+  注意：使用{PureComponent}进行性能优化，适用于将store进行immutalbe管理的数据。
+
+2.首页跳转到详情页面功能实现：
+  import { Link } from "react-router-dom"; //应用于单页跳转
+  <Link to="/detail"></Link>
+

@@ -1,18 +1,17 @@
 import styled from "styled-components";
 import logoPic from "../../statics/images/logo.png"
 
-export const HeaderWarpper  = styled.div `
-  positon:relative;
+export const HeaderWarpper  = styled.div`
+  position:relative;
   height:56px;
   line-height:56px;
   border-bottom:1px solid #f0f0f0;
   display:flex;
   align-item:center;
+  min-width:980px;
 `;
 
-export const Logo  = styled.a.attrs({
-    href:'/'
-}) `
+export const Logo  = styled.div`
   height:56px;
   width:100px;
   display:block;
@@ -20,7 +19,7 @@ export const Logo  = styled.a.attrs({
   background-size:contain;
 `;
 
-export const Nav  = styled.div `
+export const Nav  = styled.div`
   display:flex;
   flex:1;
   height:100%;
@@ -29,12 +28,12 @@ export const Nav  = styled.div `
   margin-left:100px;
 `;
 
-export const NavArea  = styled.div `
+export const NavArea  = styled.div`
     display:flex;
     align-items:center;
 `;
 
-export const NavItem = styled.div `
+export const NavItem = styled.div`
    margin-right:30px;
    color:#333;
    font-size:17px;
@@ -46,6 +45,7 @@ export const NavItem = styled.div `
 
 export const SearchItem = styled.div`
    position:relative;
+   height:38px;
    .searchIcon{
         position: absolute;
         right: 10px;
@@ -69,6 +69,7 @@ export const SearchItem = styled.div`
 export const Search = styled.input.attrs({
     placeholder:'搜索'
 }) `
+    display:block;
     padding: 0 40px 0 20px;
     width: 160px;
     height: 38px;
