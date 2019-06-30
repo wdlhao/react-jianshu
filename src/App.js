@@ -4,7 +4,9 @@ import { BrowserRouter,Route } from "react-router-dom";
 import * as routeDom from "react-router-dom";
 import Header from "./common/header"; // React组件标签第一个字母用大写来表示。
 import Home from "./pages/home";
-import Detail from "./pages/detail";
+import Detail from "./pages/detail/loadable.js";
+import Login from "./pages/login";
+import Write from "./pages/write";
 import store from "./store";
 //导入样式文件
 import {GlobalStyle} from "./statics/css/style";
@@ -27,7 +29,9 @@ class App extends Component {
            <BrowserRouter>
                 <Header></Header>
                 <Route path="/" exact component={Home}></Route>
-                <Route path="/detail" exact component={Detail}></Route>
+                <Route path="/detail/:id" exact component={Detail}></Route>
+                <Route path="/login" exact component={Login}></Route>
+                <Route path="/write" exact component={Write}></Route>
            </BrowserRouter>
          </Provider>
       </Fragment>

@@ -2,8 +2,9 @@ import styled from "styled-components";
 
 export const HomeWrapper = styled.div`
    overflow:hidden;
-   width:960px;
    margin:0 auto;
+   width:960px;
+   margin-top:60px;
 `
 
 export const HomeLeft = styled.div`
