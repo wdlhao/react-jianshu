@@ -12,7 +12,7 @@ class List extends PureComponent {
              {
                 articleList.map((item,index) => {
                     return (
-                        <Link to="/detail" key={index}>
+                        <Link to={"/detail/"+item.get('id')} key={index}>
                             <ArticeItem>
                                 <ArticleTop>
                                     <ArticeInfo>

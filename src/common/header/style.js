@@ -2,13 +2,18 @@ import styled from "styled-components";
 import logoPic from "../../statics/images/logo.png"
 
 export const HeaderWarpper  = styled.div`
-  position:relative;
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
   height:56px;
   line-height:56px;
   border-bottom:1px solid #f0f0f0;
   display:flex;
   align-item:center;
-  min-width:980px;
+  width:100%;
+  background:#fff;
+  z-index:1;
 `;
 
 export const Logo  = styled.div`
@@ -37,6 +42,7 @@ export const NavItem = styled.div`
    margin-right:30px;
    color:#333;
    font-size:17px;
+   cursor:pointer;
    &.active {
        color: #ea6f5a;
        background: none;

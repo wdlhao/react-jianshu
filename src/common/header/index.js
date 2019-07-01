@@ -2,6 +2,7 @@ import React,{ Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { actionCreators } from "./store";
+import {actionCreators as loginActionCreators } from "../../pages/login/store";
 
 import {
     HeaderWarpper,
@@ -78,7 +79,7 @@ class Header extends Component {
      }
 
     render(){
-        const {focused,searchList,handleInputFocus,handleInputBlur} = this.props;
+        const {focused,searchList,handleInputFocus,handleInputBlur,isLogin,logout} = this.props;
         return ( // 容器组件
             <HeaderWarpper>
                 <Link to="/">
@@ -104,12 +105,16 @@ class Header extends Component {
                     <NavItem>
                         <i className="iconfont">&#xe636;</i>
                     </NavItem>
-                    <NavItem>登录</NavItem>
+                    {
+                        isLogin?<NavItem onClick={logout}>退出</NavItem>:<Link to="/login"><NavItem>登录</NavItem></Link>
+                    }
                     <FunctionBtn className='RegisterBtn'>注册</FunctionBtn>
-                    <FunctionBtn className='WriteArticleBtn'>
-                        <i className="iconfont">&#xe603;</i>
-                        写文章
-                    </FunctionBtn>
+                    <Link to="/write">
+                        <FunctionBtn className='WriteArticleBtn'>
+                            <i className="iconfont">&#xe603;</i>
+                            写文章
+                        </FunctionBtn>
+                    </Link>
                 </NavArea>
                 </Nav>
             </HeaderWarpper>
@@ -125,7 +130,8 @@ const mapStateToProps = (state) => {
         mouseIn:state.get('header').get('mouseIn'),
         pageIndex:state.get('header').get('pageIndex'),
         pageSize:state.get('header').get('pageSize'),
-        pageTotal:state.get('header').get('pageTotal')
+        pageTotal:state.get('header').get('pageTotal'),
+        isLogin:state.get('login').get('isLogin')
     }
  }
 
@@ -170,6 +176,9 @@ const mapDispatchToProps = (dispatch) => {
             }else{
                 dispatch(actionCreators.changePage(1));
             }
+        },
+        logout(){
+            dispatch(loginActionCreators.logout());
         }
         
     }
