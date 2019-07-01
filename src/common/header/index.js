@@ -87,10 +87,12 @@ class Header extends Component {
                 </Link>
                 <Nav>
                 <NavArea>
-                <Link to="/">
-                    <NavItem className="index active">首页</NavItem> 
-                </Link>
-                <NavItem className="downLoad">下载App</NavItem>
+                    <Link to="/">
+                        <NavItem className="index active">首页</NavItem> 
+                    </Link>
+                    <Link to="/download">
+                        <NavItem className="downLoad">下载App</NavItem>
+                    </Link>
                     <SearchItem>
                         <Search 
                             onFocus = {() => handleInputFocus(searchList)}
