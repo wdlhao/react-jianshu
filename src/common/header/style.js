@@ -14,6 +14,18 @@ export const HeaderWarpper  = styled.div`
   width:100%;
   background:#fff;
   z-index:1;
+  .AaItem{
+    margin-right:20px;
+  }
+  .active{
+    .navItem{
+        color: #ea6f5a;
+        background: none;
+    }
+    .AaItem{
+        margin-right:20px;
+    }
+  }
 `;
 
 export const Logo  = styled.div`
@@ -43,10 +55,6 @@ export const NavItem = styled.div`
    color:#333;
    font-size:17px;
    cursor:pointer;
-   &.active {
-       color: #ea6f5a;
-       background: none;
-   }
 `;
 
 export const SearchItem = styled.div`

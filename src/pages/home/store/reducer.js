@@ -1,6 +1,8 @@
 import { fromJS } from "immutable"
 import * as constants from "./constants";
-
+import * as immutable from "immutable";
+console.log("immutable----1");
+console.log(immutable);
 
 const defaultState = fromJS({
     topicList:[],

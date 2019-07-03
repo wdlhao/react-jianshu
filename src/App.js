@@ -1,6 +1,6 @@
 import React, { Component,Fragment } from 'react';
 import { Provider } from "react-redux";
-import { BrowserRouter,Route } from "react-router-dom";
+import { BrowserRouter as Router,Route } from "react-router-dom";
 import * as routeDom from "react-router-dom";
 import Header from "./common/header"; // React组件标签第一个字母用大写来表示。
 import Home from "./pages/home";
@@ -27,14 +27,15 @@ class App extends Component {
           {/* 全局icon样式文件*/}
          <GlobalIconStyle />
          <Provider store={store}>
-           <BrowserRouter>
+           <Router>
                 <Header></Header>
                 <Route path="/" exact component={Home}></Route>
                 <Route path="/detail/:id" exact component={Detail}></Route>
                 <Route path="/login" exact component={Login}></Route>
-                <Route path="/write" exact component={Write}></Route>
-                <Route path="/downLoad" exact component={DownLoad}></Route>
-           </BrowserRouter>
+                <Route path="/write"  component={Write}></Route>
+                <Route path="/downLoad"  component={DownLoad}></Route>
+                <Route path="/Aa"  render={() => (<div style={{marginTop:60+'px'}}>这是Aa页面</div>)}></Route>
+           </Router>
          </Provider>
       </Fragment>
     );

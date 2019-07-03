@@ -1,5 +1,6 @@
 import React ,{ PureComponent } from "react";
 import { connect } from "react-redux";
+import { Prompt } from "react-router-dom";
 import * as actionCreators  from "./store/actionCreators";
 import Topic from "./components/Topic";
 import List from "./components/List";
@@ -41,6 +42,10 @@ class Home extends PureComponent {
                 {
                    this.props.showScroll?<ScrollTop onClick={this.handleScrollTop}>顶部</ScrollTop>:''
                 }
+                <Prompt
+                    when={false}
+                    message="你确定要离开当前页面吗？"
+                />
             </HomeWrapper>
         )
     }

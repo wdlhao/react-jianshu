@@ -16,7 +16,6 @@ class Detail extends PureComponent {
 
     render(){
         const { title,userPic,username,introducePic,content} =  this.props;
-        console.log(this.props);
         return (
              <DetailWrapper>
                 <DetailLeft>

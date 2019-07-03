@@ -1,6 +1,6 @@
 import React,{ Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link,NavLink } from "react-router-dom";
 import { actionCreators } from "./store";
 import {actionCreators as loginActionCreators } from "../../pages/login/store";
 
@@ -87,12 +87,12 @@ class Header extends Component {
                 </Link>
                 <Nav>
                 <NavArea>
-                    <Link to="/">
-                        <NavItem className="index active">首页</NavItem> 
-                    </Link>
-                    <Link to="/download">
-                        <NavItem className="downLoad">下载App</NavItem>
-                    </Link>
+                    <NavLink to="/" exact activeClassName="active">
+                        <NavItem className="index navItem">首页</NavItem> 
+                    </NavLink>
+                    <NavLink to="/download" activeClassName="active">
+                        <NavItem className="downLoad navItem">下载App</NavItem>
+                    </NavLink>
                     <SearchItem>
                         <Search 
                             onFocus = {() => handleInputFocus(searchList)}
@@ -104,9 +104,9 @@ class Header extends Component {
                     </SearchItem>
                 </NavArea>
                 <NavArea>
-                    <NavItem>
-                        <i className="iconfont">&#xe636;</i>
-                    </NavItem>
+                    <NavLink to="/Aa" activeClassName="active">
+                        <i className="iconfont AaItem navItem">&#xe636;</i>
+                    </NavLink>
                     {
                         isLogin?<NavItem onClick={logout}>退出</NavItem>:<Link to="/login"><NavItem>登录</NavItem></Link>
                     }
@@ -127,13 +127,13 @@ class Header extends Component {
 // 容器组件：负责页面的业务逻辑
 const mapStateToProps = (state) => {
     return {
-        focused:state.get('header').get('focused'),
-        searchList:state.get('header').get('searchList'),
-        mouseIn:state.get('header').get('mouseIn'),
-        pageIndex:state.get('header').get('pageIndex'),
-        pageSize:state.get('header').get('pageSize'),
-        pageTotal:state.get('header').get('pageTotal'),
-        isLogin:state.get('login').get('isLogin')
+        focused:state.getIn(['header','focused']),
+        searchList:state.getIn(['header','searchList']),
+        mouseIn:state.getIn(['header','mouseIn']),
+        pageIndex:state.getIn(['header','pageIndex']),
+        pageSize:state.getIn(['header','pageSize']),
+        pageTotal:state.getIn(['header','pageTotal']),
+        isLogin:state.getIn(['login','isLogin'])
     }
  }
 

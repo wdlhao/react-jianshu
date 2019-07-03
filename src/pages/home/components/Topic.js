@@ -26,7 +26,6 @@ class Topic extends PureComponent {
 }
 
 const mapState = (state) => {
-    console.log(state);
     return {
        topicList:state.getIn(['home','topicList'])  // immutable对象获取属性的方法
     }
