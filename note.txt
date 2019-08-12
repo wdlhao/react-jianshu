@@ -460,13 +460,14 @@
 document.documentElement.scrollTop
 
 8-10 首页性能优化及路由跳转
-1.性能分析：由于本项目所有的数据采用redux进行管理，通过react-redux的Provider和connect方法进行全局连接和调用；
+1.性能分析：
+  由于本项目所有的数据采用redux进行管理，通过react-redux的Provider和connect方法进行全局连接和调用；
   当store中的state中数据只要一发生变化，整个页面就会重新render，影响了页面性能。
   应该使用shouleComponentUpdate()来判断并加载必要的组件，但页面组件过多时，会显得繁琐。
   但是react提供了另外一个已经封装好了的性能优化属性{ PureComponent }称之为'纯组件',其底层已经实现了应该使用shouleComponentUpdate,
   只需要将extends Component 替换为 extends PureComponent即可，可以使组件
   根据store的变化进行按需渲染。
-  注意：使用{PureComponent}进行性能优化，适用于将store进行immutalbe管理的数据。
+  注意：使用{ PureComponent }进行性能优化，适用于将store进行immutalbe管理的数据。
 
 2.首页跳转到详情页面功能实现：
   import { Link } from "react-router-dom"; //应用于单页跳转
@@ -546,6 +547,7 @@ document.documentElement.scrollTop
  1.原理分析：
  项目现在的问题是，加载首页时，将其他所有的页面的js文件都一起加载了，严重影响了页面性能。
  优化思路：加载首页时,只加载首页对应的js文件;加载详情页时,只加载详情页面的js文件；实现不同的按需加载js文件。
+ 
  2.运行按需加载组件"react-loadable"来实现；
   实现步骤：
   (1). import Loadable from 'react-loadable';

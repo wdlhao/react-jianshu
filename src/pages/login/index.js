@@ -43,9 +43,10 @@ const mapState = (state) => ({
 
 const mapDispatch = (dispatch) => ({
     login(usernameElem,passwordElem){
-        //console.log(usernameElem.value,passwordElem.value);
+      // 页面组件中，触发creator action;
         dispatch(actionCreators.login(usernameElem.value,passwordElem.value));
     }
 })
+
 
 export default connect(mapState,mapDispatch)(Login);

@@ -25,7 +25,7 @@ import {reducer as detailReducer} from "../pages/detail/store";
 import {reducer as loginReducer} from "../pages/login/store";
 
 const reducer = combineReducers({
-    header : headerReducer,
+    header:headerReducer,
     home:homeReducer,
     detail:detailReducer,
     login:loginReducer

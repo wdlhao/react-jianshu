@@ -5,7 +5,7 @@ const changeLoginStatus = (isLogin) => ({
     type:constants.CHANGE_LOGIN_STATUS,
     isLogin
 })
-
+// 组件页面中，触发函数，会定位到这里;
 export const login = (username,password) => {
     return (dispatch) => {
         axios.get('/api/login.json?username='+username+'password='+password).then((res)=> {
