@@ -13,7 +13,7 @@ import store from "./store";
 import {GlobalStyle} from "./statics/css/style";
 import {GlobalIconStyle} from "./statics/iconfont/iconfont";
 console.log(routeDom);
-console.log("modify master content");
+console.log('修改了数据');
 
 /**
  * 1、被Provider包裹的所有的组件，都可以使用store中的数据;
